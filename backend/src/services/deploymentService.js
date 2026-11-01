@@ -164,11 +164,9 @@ const runDeployment = async ({ deployment, project }) => {
         region: storage.region,
         signedUrlExpiresAt: signed.expiresAt
       },
-      proxy: {
-        targetUrl: signed.url,
-        publicUrl: process.env.NGINX_PUBLIC_BASE_URL
-          ? `${process.env.NGINX_PUBLIC_BASE_URL.replace(/\/$/, '')}/deployments/${deploymentId}.tar`
-          : undefined
+      artifact: {
+        downloadUrl: signed.url,
+        deploymentId
       }
     });
 

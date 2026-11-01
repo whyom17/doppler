@@ -1,0 +1,14 @@
+{
+  "name": "builder-server",
+  "version": "1.0.0",
+  "private": true,
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.699.0",
+    "ioredis": "^5.6.1",
+    "mime-types": "^2.1.35"
+  }
+}

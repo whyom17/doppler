@@ -1,5 +1,24 @@
 const Project = require('../models/Project');
 const Deployment = require('../models/Deployment');
+const { startBuild } = require('../services/buildService');
+
+exports.triggerBuild = async (req, res) => {
+  try {
+    const { gitURL, slug } = req.body;
+
+    if (!gitURL) {
+      return res.status(400).json({ message: 'gitURL is required' });
+    }
+
+    const result = await startBuild({ gitURL, slug });
+    return res.status(202).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Build queue failed',
+      error: error.message
+    });
+  }
+};
 
 exports.createProject = async (req, res) => {
   try {

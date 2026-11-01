@@ -6,7 +6,7 @@
 [![AWS](https://img.shields.io/badge/AWS-Powered-orange.svg)](https://aws.amazon.com/)
 
 Doppler is an automated deployment platform that allows developers to deploy web applications simply by pushing code to GitHub.
-Built using AWS, Docker, Jenkins, GitHub Actions, Node.js, and Nginx, Doppler automates the entire process of building, containerizing, and hosting applications — all while providing a clean dashboard for logs, deployment status, and URLs.
+Built using AWS, Docker, Jenkins, GitHub Actions, Node.js, and a custom reverse proxy layer, Doppler automates the entire process of building, containerizing, and hosting applications — all while providing a clean dashboard for logs, deployment status, and URLs.
 
 ---
 
@@ -59,6 +59,7 @@ Each project runs in its own container for security & scalability.
 - EC2 for Jenkins + Docker runtime
 - Route 53 for subdomains
 - S3 for logs & artifacts
+- Custom reverse proxy for deployment URLs
 
 ---
 
@@ -119,7 +120,7 @@ Each project runs in its own container for security & scalability.
 
 ### Cloud Infrastructure
 - AWS EC2
-- Nginx Reverse Proxy
+- Custom reverse proxy
 - Docker & Docker Compose
 - Route 53
 - S3 (optional)
@@ -166,8 +167,8 @@ doppler/
 ├── jenkins/
 │   └── Jenkinsfile (CI/CD pipeline)
 │
-└── docker/
-    └── reverse-proxy/
+└── services/
+    └── build-server/
 ```
 
 ---
@@ -235,7 +236,7 @@ npm start
 **Production Deployment Includes:**
 
 - AWS EC2
-- Nginx Reverse Proxy
+- Custom reverse proxy
 - PM2 or systemd for backend
 - SSL via Let's Encrypt
 - Route 53 for domain + subdomains

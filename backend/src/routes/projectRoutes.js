@@ -7,6 +7,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.use(authMiddleware);
 
 router.post('/', projectController.createProject);
+router.post('/build', projectController.triggerBuild);
 router.get('/', projectController.getProjects);
 router.get('/:id', projectController.getProjectById);
 router.get('/:id/deployments', projectController.getDeployments);
